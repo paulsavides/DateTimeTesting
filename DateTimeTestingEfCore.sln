@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeTestingEfCore", "DateTimeTestingEfCore\DateTimeTestingEfCore.csproj", "{7CE3783A-2589-4D8C-995D-8A96AF01966C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CE3783A-2589-4D8C-995D-8A96AF01966C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CE3783A-2589-4D8C-995D-8A96AF01966C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CE3783A-2589-4D8C-995D-8A96AF01966C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CE3783A-2589-4D8C-995D-8A96AF01966C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5086AD8-7A3F-41DF-9BEC-6A17C2E17AB1}
+	EndGlobalSection
+EndGlobal
