@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,7 +25,7 @@ namespace DateTimeTestingEfCore
         await context.Database.MigrateAsync();
       }
 
-      const int numRums = 100000;
+      const int numRums = 10;
       const int printLimiter = 100;
       int weirdCount = 0;
 
@@ -46,21 +47,17 @@ namespace DateTimeTestingEfCore
           entity = created.Entity;
         }
 
-        //Console.WriteLine($"Using entity: Id={entity.Id}, CreateDateUTC={entity.CreateDateUTC:O}");
-
         using (var recordSelectScope = provider.CreateScope())
         {
           var context = recordSelectScope.ServiceProvider.GetRequiredService<TestingContext>();
-          var records = await context.TestEntities.Where(t => t.Id == entity.Id).Where(t => t.CreateDateUTC < entity.CreateDateUTC).ToListAsync();
+          var deleteCount = await context.TestEntities.Where(t => t.Id == entity.Id).Where(t => t.CreateDateUTC < entity.CreateDateUTC).BatchDeleteAsync();
 
-          if (records.Any())
+          if (deleteCount > 0)
           {
             ++weirdCount;
-            var found = records.FirstOrDefault();
-
             if (weirdCount % printLimiter == 0)
             {
-              Console.WriteLine($"Weird #{weirdCount} - found id: {found.Id}, createDate: {found.CreateDateUTC:O}, inputId: {entity.Id}, inputDate: {entity.CreateDateUTC:O}");
+              Console.WriteLine($"Expected deleted to be 0 but was actually {deleteCount}");
             }
           }
         }
